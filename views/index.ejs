@@ -1,0 +1,45 @@
+
+<%- include("partials/header.ejs") %>
+
+<div>
+
+    <div>
+
+        <form action="/random" id="f1" method="post">
+
+            <div>
+                <select  id="s1" onchange="actionurl()" >
+        
+                    <option value="/random" >Random</option>
+                    <option value="/name" >Name</option>
+                    <option value="/fl" >First Letter</option>
+                    <option value="/cat" >Category</option>
+                    <option value="/ing" >Ingrediant</option>
+                    <option value="/area" >Area</option>
+            
+                </select>
+            </div>
+
+            <div style="display:none" id="ds2">
+
+                <select class="js-example-basic-single" id="s2" name="sc">
+                  </select>
+            
+            </div>
+
+           <div style="display:none" id="tf">
+
+                Enter :<input type="text" name="t1">
+
+           </div>
+
+           <input type="submit">
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<%- include("partials/footer.ejs") %>

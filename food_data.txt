@@ -1,0 +1,7 @@
+1. www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
+2. www.themealdb.com/api/json/v1/1/search.php?f=a
+3. www.themealdb.com/api/json/v1/1/random.php
+4. www.themealdb.com/api/json/v1/1/list.php?c=list
+5. www.themealdb.com/api/json/v1/1/list.php?a=list
+6. www.themealdb.com/api/json/v1/1/list.php?i=list
+sort out all ingredint names means just give the names of all  "strIngredient" not including "idIngredient", "strDescription", "strType" just stringredient in JS array ant not on new line
