@@ -39,6 +39,27 @@
 
     </div>
 
+    <%  if(locals.foods) 
+        { 
+            var m=foods;
+            for(var sm of m) 
+            {%>
+                <div>
+                    
+                    <form action="/recipePage" method="get" onclick="toRecipe()" id="f2">
+                        
+                        <div> <%=sm.strMeal%> </div>
+                        <div> <img src="<%=sm.strMealThumb%>" alt="" height="100px" width="100px"> </div>
+                        <div> Category:<%=sm.strCategory%> <br> Area:<%=sm.strArea%> </div>
+                        
+                    </form>
+                    
+                </div>
+
+
+
+    <% }}%>
+
 </div>
 
 

@@ -178,4 +178,9 @@ function actionurl()
 
 }
 
+function toRecipe()
+{
 
+    document.getElementById("f2").submit();
+
+}

@@ -40,9 +40,9 @@ async function ram(req,res)
     try {
 
         const result=await axios.get(aio+"random.php");
-        const mydata=result.data;
+        const mydata=result.data.meals;
 
-        console.log(mydata);
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
         
     } catch (error) {
         
@@ -57,58 +57,10 @@ async function namef(req,res)
 
     try {
         var n=req.body.t1;
-        const result=await axios.get(aio+"search.php?s="+n)      
+        const result=await axios.get(aio+"search.php?s="+n);      
 
-        const mydata=result.data;
-        console.log(mydata);
-
-    } catch (error) {
-        
-    }
-
-}
-
-async function cat(req,res)
-{
-
-    try {
-        var n=req.body.sc;
-        const result=await axios.get(aio+"filter.php?c="+n)      
-
-        const mydata=result.data;
-        console.log(mydata);
-
-    } catch (error) {
-        
-    }
-
-}
-
-async function ing(req,res)
-{
-
-    try {
-        var n=req.body.sc;
-        const result=await axios.get(aio+"filter.php?i="+n)      
-
-        const mydata=result.data;
-        console.log(mydata);
-
-    } catch (error) {
-        
-    }
-
-}
-
-async function area(req,res)
-{
-
-    try {
-        var n=req.body.sc;
-        const result=await axios.get(aio+"filter.php?a="+n)      
-
-        const mydata=result.data;
-        console.log(mydata);
+        const mydata=result.data.meals;
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
         
@@ -121,10 +73,88 @@ async function fl(req,res)
 
     try {
         var n=req.body.sc;
-        const result=await axios.get(aio+"search.php?f="+n)      
+        const result=await axios.get(aio+"search.php?f="+n);  
 
-        const mydata=result.data;
-        console.log(mydata);
+        const mydata=result.data.meals;
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
+
+    } catch (error) {
+        
+    }
+
+}
+
+async function cat(req,res)
+{
+
+    try {
+        var n=req.body.sc;
+        var mydata=[];
+        const result=await axios.get(aio+"filter.php?c="+n);
+
+        const foodids=result.data.meals;
+
+        for(var i of foodids)
+        {
+
+            const result2=await axios.get(aio+"lookup.php?i="+i.idMeal);
+            mydata.push(result2.data.meals[0]);
+
+        }
+
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+async function ing(req,res)
+{
+
+    try {
+        var n=req.body.sc;
+        var mydata=[];
+        const result=await axios.get(aio+"filter.php?i="+n);      
+
+        const foodids=result.data.meals;
+
+        for(var i of foodids)
+        {
+
+            const result2=await axios.get(aio+"lookup.php?i="+i.idMeal);
+            mydata.push(result2.data.meals[0]);
+
+        }
+
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
+
+    } catch (error) {
+        
+    }
+
+}
+
+async function area(req,res)
+{
+
+    try {
+        var n=req.body.sc;
+        var mydata=[];
+        const result=await axios.get(aio+"filter.php?a="+n);      
+
+        const foodids=result.data.meals;
+
+        for(var i of foodids)
+        {
+
+            const result2=await axios.get(aio+"lookup.php?i="+i.idMeal);
+            mydata.push(result2.data.meals[0]);
+
+        }
+
+        res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
         
