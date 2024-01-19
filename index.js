@@ -3,6 +3,7 @@ import bp from "body-parser";
 import axios from "axios";
 import {dirname} from "path";
 import {fileURLToPath} from "url";
+import { Console } from "console";
 
 
 const port=3000;
@@ -13,6 +14,9 @@ const dir=dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static("public"));
 app.use(bp.urlencoded({extended:true}));
+app.use(bp.json());
+
+var dc=[];
 
 app.get("/",(req,res)=>{
 
@@ -26,7 +30,7 @@ app.post("/fl",fl);
 app.post("/cat",cat);
 app.post("/ing",ing);
 app.post("/area",area);
-
+app.post("/recipePage",recipe)
 
 app.listen(port,()=>{
 
@@ -34,22 +38,26 @@ app.listen(port,()=>{
 
 })
 
-async function ram(req,res)
-{
+async function ram(req, res) {
+    var result;
+    var mydata;
 
     try {
+        do {
+            result = await axios.get(aio + "random.php");
+            mydata = result.data.meals;
+            
+        } while (searchInObject(mydata[0]));
 
-        const result=await axios.get(aio+"random.php");
-        const mydata=result.data.meals;
+        dc.length = 0;
+        dc = [].concat(mydata);
 
-        res.render(`${dir}/views/index.ejs`,{foods:mydata});
-        
+        res.render(`${dir}/views/index.ejs`, { foods: mydata });
+
     } catch (error) {
-        
-        res.status(500);
-
+        console.error(error);
+        res.status(500).send("Internal Server Error");
     }
-
 }
 
 async function namef(req,res)
@@ -58,8 +66,22 @@ async function namef(req,res)
     try {
         var n=req.body.t1;
         const result=await axios.get(aio+"search.php?s="+n);      
-
         const mydata=result.data.meals;
+
+        for(var i = mydata.length - 1; i >= 0; i--)
+        {
+            if(searchInObject(mydata[i]))
+            {
+
+                mydata.splice(i, 1);
+
+            }
+
+        }
+
+        dc.length=0;
+        dc=[].concat(mydata);
+
         res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
@@ -71,11 +93,26 @@ async function namef(req,res)
 async function fl(req,res)
 {
 
+    var cateo;
+
     try {
         var n=req.body.sc;
-        const result=await axios.get(aio+"search.php?f="+n);  
 
+        const result=await axios.get(aio+"search.php?f="+n);  
         const mydata=result.data.meals;
+        for(var i = mydata.length - 1; i >= 0; i--)
+        {
+            if(searchInObject(mydata[i]))
+            {
+
+                mydata.splice(i, 1);
+
+            }
+
+        }
+        dc.length=0;
+        dc=[].concat(mydata);
+
         res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
@@ -101,6 +138,20 @@ async function cat(req,res)
             mydata.push(result2.data.meals[0]);
 
         }
+
+        for(var i = mydata.length - 1; i >= 0; i--)
+        {
+            if(searchInObject(mydata[i]))
+            {
+
+                mydata.splice(i, 1);
+
+            }
+
+        }
+
+        dc.length=0;
+        dc=[].concat(mydata);
 
         res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
@@ -128,6 +179,20 @@ async function ing(req,res)
 
         }
 
+        for(var i = mydata.length - 1; i >= 0; i--)
+        {
+            if(searchInObject(mydata[i]))
+            {
+
+                mydata.splice(i, 1);
+
+            }
+
+        }
+
+        dc.length=0;
+        dc=[].concat(mydata);
+
         res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
@@ -154,6 +219,20 @@ async function area(req,res)
 
         }
 
+        for(var i = mydata.length - 1; i >= 0; i--)
+        {
+            if(searchInObject(mydata[i]))
+            {
+
+                mydata.splice(i, 1);
+
+            }
+
+        }
+
+        dc.length=0;
+        dc=[].concat(mydata);
+
         res.render(`${dir}/views/index.ejs`,{foods:mydata});
 
     } catch (error) {
@@ -161,3 +240,41 @@ async function area(req,res)
     }
 
 }
+
+function recipe(req,res)
+{
+
+    var id=req.body.foods;
+    var mydata;
+
+    for(var i of dc)
+    {
+
+        if(i.idMeal==id);
+        {
+
+            mydata=i;
+            break;
+
+        }
+
+    }
+
+    res.render(`${dir}/views/recipe.ejs`,{foods:mydata});
+
+}
+
+function searchInObject(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const value = obj[key];
+
+            if (typeof value === 'string' && value.toLowerCase().includes("beef")) 
+            {
+                return true; // Found the string in the object
+            }
+        }
+    }
+    return false; // String not found in the object
+}
+

@@ -178,9 +178,38 @@ function actionurl()
 
 }
 
-function toRecipe()
+function toRecipe(sm)
 {
 
-    document.getElementById("f2").submit();
+  fetch('/recipePage', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ foods:sm}),
+  })
+  .then(response => response.text())
+  .then(html => {
+    
+    document.open();
+    document.write(html);
+    document.close();
+})
+  .catch(error => console.error('Error:', error));
 
+} 
+
+function sorryRadhaKrishn(event) {
+  const forbiddenWord = 'beef';
+  const inputValue = event.target.value.toLowerCase();
+
+  if (inputValue.includes(forbiddenWord)) {
+      // If the input contains the forbidden word, prevent the input
+      event.preventDefault();
+      alert('The word "beef" is not allowed.');
+      // Optionally, you can clear the input field
+      event.target.value = '';
+  }
 }
+
+

@@ -29,7 +29,7 @@
 
            <div style="display:none" id="tf">
 
-                Enter :<input type="text" name="t1">
+                Enter :<input type="text" name="t1" oninput="sorryRadhaKrishn(event)">
 
            </div>
 
@@ -44,23 +44,21 @@
             var m=foods;
             for(var sm of m) 
             {%>
-                <div>
+                <div onclick="toRecipe('<%=sm.idMeal%>')">
                     
-                    <form action="/recipePage" method="get" onclick="toRecipe()" id="f2">
                         
                         <div> <%=sm.strMeal%> </div>
                         <div> <img src="<%=sm.strMealThumb%>" alt="" height="100px" width="100px"> </div>
-                        <div> Category:<%=sm.strCategory%> <br> Area:<%=sm.strArea%> </div>
-                        
-                    </form>
+                        <div> <p>Category:<%=sm.strCategory%> <br> Area:<%=sm.strArea%></p> </div>        
                     
+
                 </div>
-
-
 
     <% }}%>
 
 </div>
 
-
 <%- include("partials/footer.ejs") %>
+
+<script src="js/main.js"></script>
+

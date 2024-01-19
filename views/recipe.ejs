@@ -1,0 +1,9 @@
+<%- include("partials/header.ejs") %>
+
+    <% if(locals.foods){%>
+        <p>Success:<%=foods.strMeal%></p>
+    <%}else {%>
+        <p>Failed</p>
+    <%}%>
+
+<%- include("partials/footer.ejs") %>
