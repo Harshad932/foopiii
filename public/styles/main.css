@@ -1,0 +1,23 @@
+.mymain
+{
+
+    min-height:81vh;
+    padding-bottom: 20px;
+
+}
+
+.myselect 
+{
+    
+    margin: 0;
+
+}
+
+.foo
+{
+
+    background-color: #FFE7C1;
+    width: 100%;
+    min-height: 7vh;
+
+}

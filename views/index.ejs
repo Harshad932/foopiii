@@ -1,40 +1,45 @@
 
 <%- include("partials/header.ejs") %>
 
-<div>
+<div class="mymain">
 
-    <div>
+    <div >
 
         <form action="/random" id="f1" method="post">
-
-            <div>
-                <select  id="s1" onchange="actionurl()" >
-        
-                    <option value="/random" >Random</option>
-                    <option value="/name" >Name</option>
-                    <option value="/fl" >First Letter</option>
-                    <option value="/cat" >Category</option>
-                    <option value="/ing" >Ingrediant</option>
-                    <option value="/area" >Area</option>
+            <div class="row myselect">
+                <div class="col-lg-6">
+                    <select  id="s1" onchange="actionurl()">
             
-                </select>
+                        <option value="/random" >Random</option>
+                        <option value="/name" >Name</option>
+                        <option value="/fl" >First Letter</option>
+                        <option value="/cat" >Category</option>
+                        <option value="/ing" >Ingrediant</option>
+                        <option value="/area" >Area</option>
+                
+                    </select>
+                </div>
+
+                <div style="display:none" id="ds2" class="col-lg-3">
+
+                    <select class="js-example-basic-single" id="s2" name="sc">
+                    </select>
+                
+                </div>
+
+                <div style="display:none" id="tf" class="col-lg-3">
+
+                    Enter :<input type="text" name="t1" oninput="sorryRadhaKrishn(event)">
+
+                </div>
+
+                <div class="col-lg-3" id="mysub">
+
+                    <input type="submit">
+
+                </div>    
+
             </div>
-
-            <div style="display:none" id="ds2">
-
-                <select class="js-example-basic-single" id="s2" name="sc">
-                  </select>
-            
-            </div>
-
-           <div style="display:none" id="tf">
-
-                Enter :<input type="text" name="t1" oninput="sorryRadhaKrishn(event)">
-
-           </div>
-
-           <input type="submit">
-
         </form>
 
     </div>

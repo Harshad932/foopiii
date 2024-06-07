@@ -260,7 +260,37 @@ function recipe(req,res)
 
     }
 
-    res.render(`${dir}/views/recipe.ejs`,{foods:mydata});
+    var imgs=mydata.strMealThumb;
+    var name=mydata.strMeal;
+    var cat=mydata.strCategory;
+    var area=mydata.strArea;
+    var instruc=mydata.strInstructions;
+    var ing="";
+
+    for(var k in mydata)
+    {
+
+        if(k.includes("strIngredient"))
+        {
+
+            ing=ing+mydata[k];
+
+            if(!mydata[k])
+            {
+                
+                break;
+            
+            }
+
+            ing+=",";
+
+        }
+
+    }
+
+    var ing=ing.substring(0,ing.length-1);
+
+    res.render(`${dir}/views/recipe.ejs`,{imgsr:imgs,namer:name,catr:cat,arear:area,instrucr:instruc,ingr:ing});
 
 }
 
@@ -268,7 +298,6 @@ function searchInObject(obj) {
     for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
             const value = obj[key];
-
             if (typeof value === 'string' && value.toLowerCase().includes("beef")) 
             {
                 return true; // Found the string in the object

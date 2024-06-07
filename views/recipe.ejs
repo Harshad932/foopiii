@@ -1,7 +1,18 @@
 <%- include("partials/header.ejs") %>
 
-    <% if(locals.foods){%>
-        <p>Success:<%=foods.strMeal%></p>
+    <% if(locals.imgsr){%>
+        
+        <div class="myrmain">
+
+            <div><h1><%=namer%></h1></div>
+            <div><img src="<%=imgsr%>" alt="" height="100px" width="100px"></div>
+            <div>Category:<%=catr%></div>
+            <div>Area:<%=arear%></div>
+            <div>Instruction:<%=instrucr%></div>
+            <div>ingrediants:<%=ingr%></div>
+
+        </div>
+
     <%}else {%>
         <p>Failed</p>
     <%}%>
