@@ -259,12 +259,13 @@ function recipe(req,res)
         }
 
     }
-
+    
     var imgs=mydata.strMealThumb;
     var name=mydata.strMeal;
     var cat=mydata.strCategory;
     var area=mydata.strArea;
     var instruc=mydata.strInstructions;
+    
     var ing="";
 
     for(var k in mydata)

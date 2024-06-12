@@ -1,15 +1,28 @@
+<div class="hf">
 <%- include("partials/header.ejs") %>
+</div>
 
     <% if(locals.imgsr){%>
         
-        <div class="myrmain">
+        <div class="myrmain row ">
 
-            <div><h1><%=namer%></h1></div>
-            <div><img src="<%=imgsr%>" alt="" height="100px" width="100px"></div>
-            <div>Category:<%=catr%></div>
-            <div>Area:<%=arear%></div>
-            <div>Instruction:<%=instrucr%></div>
-            <div>ingrediants:<%=ingr%></div>
+            <div class="col-lg-5 wr rbor"> 
+                <div class="ihbor">
+                    <div class="rfid">
+                        <img src="<%=imgsr%>" alt="" class="rfi">
+                    </div>
+                    <h1><%=namer%></h1>
+                </div>
+                <div class="row wr ihbor">
+                    <p class="rcata col-lg-6 col-md-12 wr cbor" ><span class="rcah">Category:</span><%=catr%></p> 
+                    <p class="rcata col-lg-6 col-md-12 wr abor"> <span class="rcah">Area:</span><%=arear%></p>
+                </div>
+                <p class="ring inbor"><span class="rcah">Ingrediants:</span><%=ingr%></p>
+            </div>
+            <div class="col-lg-7">
+                <p class="rinst"><%=instrucr%></p>
+            </div>
+            
 
         </div>
 
@@ -17,4 +30,5 @@
         <p>Failed</p>
     <%}%>
 
-<%- include("partials/footer.ejs") %>
+
+    <%- include("partials/footer.ejs") %>

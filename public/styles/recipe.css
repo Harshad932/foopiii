@@ -1,7 +1,110 @@
 .myrmain
 {
 
-    min-height:81vh;
-    padding-bottom: 20px;
+    margin: 0;
+    min-height:100vh;
+    background-color: #FEFFD2;
+    padding: 72px 0px 0 0;
 
 }
+
+.wr
+{
+
+    padding: 0 !important;
+
+}
+
+.rfid
+{
+
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.rfi
+{
+
+    height:200px;
+    width:200px;
+    border-radius:50%;
+
+}
+
+h1
+{
+
+    text-align: center;
+
+}
+
+.rcata
+    {
+
+        margin: 10px 0 10px 0;
+        font-size: 18px;
+        text-align: center;
+
+    }
+
+.ring
+{
+
+
+        font-size: 18px;
+        word-wrap: break-word;
+
+}
+
+.rcah
+{
+
+    font-weight: bold ;
+
+}
+
+.ihbor
+{
+
+    border-bottom: 3px solid #E88D67;
+    margin-right: 0;
+    margin-bottom: 10px;
+
+}
+
+.rbor
+{
+
+    border-right: 3px solid #E88D67;
+    border-bottom: 3px solid #E88D67;
+
+}
+
+.cbor
+{
+
+    border-right: 3px solid #E88D67;
+
+}
+
+.abor
+{
+
+    border-left: 3px solid #E88D67;
+
+}
+
+.rinst
+{
+
+    margin: 30px;
+    font-size: 20px;
+    text-align: center;
+    word-wrap: break-word;
+
+}
+

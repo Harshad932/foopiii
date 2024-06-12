@@ -1,5 +1,6 @@
-
-<%- include("partials/header.ejs") %>
+<div class="hf">
+    <%- include("partials/header.ejs") %>
+</div>
 
 <div class="mymain">
 
@@ -7,8 +8,8 @@
 
         <form action="/random" id="f1" method="post">
             <div class="row myselect">
-                <div class="col-lg-6">
-                    <select  id="s1" onchange="actionurl()">
+                <div class="col-lg-4 col-md-4 col-sm-4 scd">
+                    <select  id="s1" class="custom-select" onchange="actionurl()">
             
                         <option value="/random" >Random</option>
                         <option value="/name" >Name</option>
@@ -20,22 +21,22 @@
                     </select>
                 </div>
 
-                <div style="display:none" id="ds2" class="col-lg-3">
+                <div style="display:none" id="ds2" class="col-lg-4 col-md-4 col-sm-8 scd">
 
                     <select class="js-example-basic-single" id="s2" name="sc">
                     </select>
                 
                 </div>
 
-                <div style="display:none" id="tf" class="col-lg-3">
+                <div style="display:none" id="tf" class="col-lg-4 col-md-4 col-sm-8 scd">
 
-                    Enter :<input type="text" name="t1" oninput="sorryRadhaKrishn(event)">
+                    <input type="text" name="t1" class="it" placeholder="Enter Name" oninput="sorryRadhaKrishn(event)">
 
                 </div>
 
-                <div class="col-lg-3" id="mysub">
+                <div class="col-lg-4 col-md-4 col-sm-12 scd " id="mysub">
 
-                    <input type="submit">
+                    <input type="submit" class="btn btn-secondary">
 
                 </div>    
 
@@ -46,20 +47,23 @@
 
     <%  if(locals.foods) 
         { 
-            var m=foods;
-            for(var sm of m) 
+            var m=foods;%>
+            <div class="row frontdata">
+            <%for(var sm of m) 
             {%>
-                <div onclick="toRecipe('<%=sm.idMeal%>')">
-                    
-                        
-                        <div> <%=sm.strMeal%> </div>
-                        <div> <img src="<%=sm.strMealThumb%>" alt="" height="100px" width="100px"> </div>
-                        <div> <p>Category:<%=sm.strCategory%> <br> Area:<%=sm.strArea%></p> </div>        
-                    
 
+                <div onclick="toRecipe('<%=sm.idMeal%>')" class="col-lg-3 col-md-5 col-sm-6 col-10 frontdatabranch">
+                    <div class="fid">
+                        <img src="<%=sm.strMealThumb%>" alt="" class="fi"> 
+                    </div>
+                    <div class="">
+                        <h3 class="h3meal"><%=sm.strMeal%></h3>
+                        <div> <p class="cata"><span class="cah">Category:</span><%=sm.strCategory%> <br> <span class="cah">Area:</span><%=sm.strArea%></p> </div>   
+                    </div>         
                 </div>
 
     <% }}%>
+            </div>
 
 </div>
 

@@ -163,13 +163,13 @@ function actionurl()
 
         }
 
-        document.getElementById("ds2").style.display = "block";
+        document.getElementById("ds2").style.display = "flex";
 
     }
     else if(siv==="/name")
     {
 
-        document.getElementById("tf").style.display = "block";
+        document.getElementById("tf").style.display = "flex";
 
     }
 
