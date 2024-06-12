@@ -250,7 +250,7 @@ function recipe(req,res)
     for(var i of dc)
     {
 
-        if(i.idMeal==id);
+        if(i.idMeal==id)
         {
 
             mydata=i;
