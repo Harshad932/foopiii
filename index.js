@@ -6,7 +6,7 @@ import {fileURLToPath} from "url";
 import { Console } from "console";
 
 
-const port=3000;
+const port=process.env.PORT || 3000;
 const app=express();
 const aio="http://www.themealdb.com/api/json/v1/1/"
 
