@@ -15,6 +15,7 @@
 
     position: fixed;
     width: 100%;
+    z-index: 1000;
 
   }
 
@@ -36,7 +37,10 @@
 
       display: flex;
       justify-content: center;
+      flex-grow: 1;
+      flex-shrink: 1;
       padding: 0;
+      margin: 10px 0 ;
 
   }
 
