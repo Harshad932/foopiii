@@ -212,4 +212,527 @@ function sorryRadhaKrishn(event) {
   }
 }
 
+// Enhanced JavaScript with Smooth Animations and Effects
+
+// DOM Ready
+$(document).ready(function() {
+    initializeAnimations();
+    setupEventListeners();
+    initializeSelect2();
+    setupScrollEffects();
+    addLoadingStates();
+});
+
+// Initialize entrance animations
+function initializeAnimations() {
+    // Stagger animation for cards
+    $('.frontdatabranch').each(function(index) {
+        $(this).css({
+            'animation-delay': (index * 0.1) + 's',
+            'animation-fill-mode': 'both'
+        });
+    });
+    
+    // Add floating animation to navbar brand
+    $('.navbar-brand').hover(
+        function() {
+            $(this).addClass('animate__animated animate__pulse');
+        },
+        function() {
+            $(this).removeClass('animate__animated animate__pulse');
+        }
+    );
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // Enhanced form submission with loading state
+    $('#f1').on('submit', function(e) {
+        const submitBtn = $(this).find('input[type="submit"]');
+        const originalText = submitBtn.val();
+        
+        submitBtn.val('Searching...').prop('disabled', true);
+        submitBtn.html('<span class="loading"></span> Searching...');
+        
+        // Add subtle shake effect to form
+        $('.myselect').addClass('animate__animated animate__pulse');
+        
+        setTimeout(() => {
+            $('.myselect').removeClass('animate__animated animate__pulse');
+        }, 600);
+    });
+    
+    // Smooth scroll for better UX
+    $('a[href^="#"]').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this.getAttribute('href'));
+        if (target.length) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - 100
+            }, 800, 'easeInOutCubic');
+        }
+    });
+    
+    // Enhanced card hover effects
+    $('.frontdatabranch').hover(
+        function() {
+            $(this).find('.fi').css('transform', 'scale(1.1)');
+            $(this).find('.h3meal').css('color', 'var(--primary-color)');
+        },
+        function() {
+            $(this).find('.fi').css('transform', 'scale(1)');
+            $(this).find('.h3meal').css('color', 'var(--dark-color)');
+        }
+    );
+    
+    // Add ripple effect to buttons
+    $('.btn').on('click', function(e) {
+        const button = $(this);
+        const ripple = $('<span class="ripple"></span>');
+        
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.css({
+            width: size,
+            height: size,
+            left: x,
+            top: y
+        }).addClass('ripple-animate');
+        
+        button.append(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+    
+    // Add back to top button functionality
+    addBackToTopButton();
+}
+
+// Initialize Select2 with custom styling
+function initializeSelect2() {
+    $('.js-example-basic-single').select2({
+        placeholder: "Select an option",
+        allowClear: true,
+        width: '100%'
+    });
+    
+    // Custom styling for Select2
+    $('.select2-container').addClass('custom-select2');
+}
+
+// Setup scroll effects
+function setupScrollEffects() {
+    let ticking = false;
+    
+    function updateScrollEffects() {
+        const scrollTop = $(window).scrollTop();
+        const windowHeight = $(window).height();
+        
+        // Parallax effect for navbar
+        if (scrollTop > 50) {
+            $('.navbar').addClass('scrolled');
+        } else {
+            $('.navbar').removeClass('scrolled');
+        }
+        
+        // Animate elements on scroll
+        $('.frontdatabranch').each(function() {
+            const elementTop = $(this).offset().top;
+            const elementVisible = 150;
+            
+            if (scrollTop > (elementTop - windowHeight + elementVisible)) {
+                $(this).addClass('animate-in');
+            }
+        });
+        
+        ticking = false;
+    }
+    
+    $(window).on('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    });
+}
+
+// Add loading states to interactions
+function addLoadingStates() {
+    // Loading overlay for form submissions
+    const loadingOverlay = $(`
+        <div class="loading-overlay">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="loading-text">Fetching delicious recipes...</div>
+            </div>
+        </div>
+    `);
+    
+    $('body').append(loadingOverlay);
+    
+    // Show loading on form submit
+    $('form').on('submit', function() {
+        $('.loading-overlay').fadeIn(300);
+    });
+    
+    // Hide loading when page loads
+    $(window).on('load', function() {
+        $('.loading-overlay').fadeOut(300);
+    });
+}
+
+
+
+// Enhanced function for URL changes
+function actionurl() {
+    const selectValue = document.getElementById('s1').value;
+    const form = document.getElementById('f1');
+    const secondSelect = document.getElementById('ds2');
+    const textField = document.getElementById('tf');
+    const s2 = document.getElementById('s2');
+    
+    // Add transition effects
+    $(secondSelect).fadeOut(200);
+    $(textField).fadeOut(200);
+    
+    setTimeout(() => {
+        form.action = selectValue;
+        
+        // Clear previous options
+        $(s2).empty();
+        
+        switch(selectValue) {
+            case '/name':
+                $(textField).fadeIn(300);
+                break;
+                
+            case '/fl':
+                populateSelect(s2, getFirstLetters(), 'Select First Letter');
+                $(secondSelect).fadeIn(300);
+                break;
+                
+            case '/cat':
+                fetchAndPopulateCategories(s2);
+                $(secondSelect).fadeIn(300);
+                break;
+                
+            case '/ing':
+                fetchAndPopulateIngredients(s2);
+                $(secondSelect).fadeIn(300);
+                break;
+                
+            case '/area':
+                fetchAndPopulateAreas(s2);
+                $(secondSelect).fadeIn(300);
+                break;
+                
+            default:
+                // Random - no additional fields needed
+                break;
+        }
+    }, 200);
+}
+
+// Helper function to populate select options
+function populateSelect(selectElement, options, placeholder) {
+    $(selectElement).append(`<option value="">${placeholder}</option>`);
+    options.forEach(option => {
+        $(selectElement).append(`<option value="${option}">${option}</option>`);
+    });
+    $(selectElement).select2('destroy').select2({
+        placeholder: placeholder,
+        allowClear: true,
+        width: '100%'
+    });
+}
+
+// Get first letters A-Z
+function getFirstLetters() {
+    return Array.from({length: 26}, (_, i) => String.fromCharCode(65 + i));
+}
+
+// Fetch categories from API
+async function fetchAndPopulateCategories(selectElement) {
+    try {
+        showSelectLoading(selectElement);
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
+        const data = await response.json();
+        const categories = data.categories.map(cat => cat.strCategory);
+        populateSelect(selectElement, categories, 'Select Category');
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        $(selectElement).append('<option value="">Error loading categories</option>');
+    }
+}
+
+// Fetch ingredients from API
+async function fetchAndPopulateIngredients(selectElement) {
+    try {
+        showSelectLoading(selectElement);
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+        const data = await response.json();
+        const ingredients = data.meals.map(ing => ing.strIngredient).slice(0, 50); // Limit to 50
+        populateSelect(selectElement, ingredients, 'Select Ingredient');
+    } catch (error) {
+        console.error('Error fetching ingredients:', error);
+        $(selectElement).append('<option value="">Error loading ingredients</option>');
+    }
+}
+
+// Fetch areas from API
+async function fetchAndPopulateAreas(selectElement) {
+    try {
+        showSelectLoading(selectElement);
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+        const data = await response.json();
+        const areas = data.meals.map(area => area.strArea);
+        populateSelect(selectElement, areas, 'Select Area');
+    } catch (error) {
+        console.error('Error fetching areas:', error);
+        $(selectElement).append('<option value="">Error loading areas</option>');
+    }
+}
+
+// Show loading state for select elements
+function showSelectLoading(selectElement) {
+    $(selectElement).empty().append('<option value="">Loading...</option>');
+}
+
+// Enhanced recipe navigation
+function toRecipe(mealId) {
+    // Add loading animation to clicked card
+    const clickedCard = event.currentTarget;
+    $(clickedCard).addClass('loading-card');
+    
+    // Create and submit form
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/recipePage';
+    form.style.display = 'none';
+    
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'foods';
+    input.value = mealId;
+    
+    form.appendChild(input);
+    document.body.appendChild(form);
+    
+    // Add slight delay for better UX
+    setTimeout(() => {
+        form.submit();
+    }, 300);
+}
+
+// Input validation with visual feedback
+function sorryRadhaKrishn(event) {
+    const input = event.target;
+    const value = input.value.trim();
+    
+    // Remove previous validation classes
+    $(input).removeClass('valid invalid');
+    
+    if (value.length > 0) {
+        if (value.length >= 2) {
+            $(input).addClass('valid');
+        } else {
+            $(input).addClass('invalid');
+        }
+    }
+    
+    // Real-time validation feedback
+    if (value.length === 1) {
+        showTooltip(input, 'Please enter at least 2 characters');
+    } else {
+        hideTooltip(input);
+    }
+}
+
+// Tooltip functions
+function showTooltip(element, message) {
+    const tooltip = $(`<div class="input-tooltip">${message}</div>`);
+    $(element).parent().append(tooltip);
+    setTimeout(() => tooltip.addClass('show'), 10);
+}
+
+function hideTooltip(element) {
+    $(element).parent().find('.input-tooltip').remove();
+}
+
+// Smooth page transitions
+function smoothTransition() {
+    $('body').addClass('page-transition');
+    setTimeout(() => {
+        $('body').removeClass('page-transition');
+    }, 300);
+}
+
+// Add CSS for enhanced effects
+const additionalStyles = `
+<style>
+.navbar.scrolled {
+    background: rgba(44, 62, 80, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+.animate-in {
+    animation: slideInUp 0.6s ease-out;
+}
+
+.loading-card {
+    opacity: 0.7;
+    transform: scale(0.98);
+    pointer-events: none;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    text-align: center;
+}
+
+.spinner-ring {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.loading-text {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 1000;
+    box-shadow: var(--shadow-medium);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: var(--shadow-heavy);
+}
+
+.back-to-top i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    transform: scale(0);
+}
+
+.ripple-animate {
+    animation: ripple-effect 0.6s ease-out;
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.input-tooltip {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    background: var(--danger-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.input-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.input-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--danger-color);
+}
+
+.it.valid {
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.it.invalid {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.page-transition {
+    opacity: 0.8;
+    transform: scale(0.98);
+    transition: all 0.3s ease;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+`;
+
+// Inject additional styles
+$('head').append(additionalStyles);
+
 

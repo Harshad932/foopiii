@@ -1,109 +1,483 @@
-.myrmain
-{
+/* Enhanced Recipe Page CSS with Professional Design & Animations */
 
-    margin: 0;
-    min-height:100vh;
-    background-color: #FEFFD2;
-    padding: 72px 0px 0 0;
-
+/* Recipe Main Container */
+.myrmain {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-heavy);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-.wr
-{
-
-    padding: 0 !important;
-
+.myrmain::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    animation: slideInWidth 1s ease-out;
 }
 
-.rfid
-{
-
-    margin: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-
+@keyframes slideInWidth {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.rfi
-{
-
-    height:200px;
-    width:200px;
-    border-radius:50%;
-
+/* Left Column - Image and Details */
+.wr {
+    animation: slideInLeft 0.8s ease-out;
 }
 
-h1
-{
+.rbor {
+    border-right: 2px solid #e9ecef;
+    padding-right: 2rem !important;
+    position: relative;
+}
 
+.rbor::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 10%;
+    height: 80%;
+    width: 2px;
+    background: var(--gradient-primary);
+    opacity: 0.3;
+}
+
+/* Image Container */
+.ihbor {
+    margin-bottom: 2rem;
+    animation: fadeInScale 0.8s ease-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+.rfid {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 1.5rem;
+    height: 300px;
+}
+
+.rfi {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+    filter: brightness(1.05) contrast(1.1);
+}
+
+.rfid::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.4));
+    pointer-events: none;
+}
+
+.rfid:hover .rfi {
+    transform: scale(1.05);
+    filter: brightness(1.2) contrast(1.2);
+}
+
+/* Recipe Title */
+.ihbor h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
     text-align: center;
-
+    position: relative;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
 }
 
-.rcata
-    {
+.ihbor h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
 
-        margin: 10px 0 10px 0;
-        font-size: 18px;
-        text-align: center;
+/* Category and Area Row */
+.ihbor .row {
+    margin-bottom: 1.5rem;
+}
 
+.rcata {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #495057;
+    position: relative;
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+    animation: slideInRight 0.6s ease-out;
+    animation-delay: 0.6s;
+    animation-fill-mode: both;
+}
+
+.cbor {
+    animation-delay: 0.6s;
+}
+
+.abor {
+    animation-delay: 0.7s;
+}
+
+.rcata:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-light);
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+}
+
+.rcah {
+    font-weight: 700;
+    color: var(--accent-color);
+    display: inline-block;
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* Ingredients Section */
+.ring {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 147, 30, 0.1) 100%);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #495057;
+    position: relative;
+    animation: slideInUp 0.8s ease-out;
+    animation-delay: 0.8s;
+    animation-fill-mode: both;
+}
+
+.inbor {
+    border-left: 6px solid var(--primary-color);
+}
+
+.ring::before {
+    content: '🥘';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-size: 2rem;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    box-shadow: var(--shadow-light);
+}
+
+/* Instructions Section */
+.col-lg-7 {
+    padding-left: 2rem !important;
+    animation: slideInRight 0.8s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+}
+
+.rinst {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #495057;
+    text-align: justify;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: var(--border-radius);
+    border: 1px solid #e9ecef;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: both;
+}
+
+.rinst::before {
+    content: 'Instructions';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--gradient-primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-medium);
+}
+
+.rinst::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 0 2px 2px 0;
+}
+
+/* Enhanced Animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
     }
-
-.ring
-{
-
-
-        font-size: 18px;
-        word-wrap: break-word;
-
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.rcah
-{
-
-    font-weight: bold ;
-
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.ihbor
-{
-
-    border-bottom: 3px solid #E88D67;
-    margin-right: 0;
-    margin-bottom: 10px;
-
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.rbor
-{
-
-    border-right: 3px solid #E88D67;
-    border-bottom: 3px solid #E88D67;
-
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.cbor
-{
-
-    border-right: 3px solid #E88D67;
-
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.abor
-{
-
-    border-left: 3px solid #E88D67;
-
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-heavy);
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1000;
+    animation: bounceIn 1s ease-out;
+    animation-delay: 1s;
+    animation-fill-mode: both;
 }
 
-.rinst
-{
-
-    margin: 30px 0 74px ;
-    font-size: 20px;
-    word-wrap: break-word;
-
+.fab:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
+.fab::before {
+    content: '↑';
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Error/Failed State */
+.myrmain p {
+    font-size: 1.5rem;
+    color: var(--danger-color);
+    text-align: center;
+    padding: 3rem;
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px dashed var(--danger-color);
+    border-radius: var(--border-radius);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .myrmain {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .rbor {
+        border-right: none;
+        border-bottom: 2px solid #e9ecef;
+        padding-right: 0 !important;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .rbor::after {
+        display: none;
+    }
+    
+    .col-lg-7 {
+        padding-left: 0 !important;
+    }
+    
+    .ihbor h1 {
+        font-size: 2rem;
+    }
+    
+    .rfid {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .myrmain {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .ihbor h1 {
+        font-size: 1.8rem;
+    }
+    
+    .rfid {
+        height: 200px;
+    }
+    
+    .rinst {
+        padding: 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .ring {
+        padding: 1rem;
+    }
+    
+    .fab {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .myrmain {
+        margin: 0.25rem;
+        padding: 0.75rem;
+    }
+    
+    .ihbor h1 {
+        font-size: 1.5rem;
+    }
+    
+    .rcata {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .ring {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .rinst {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .rfid {
+        height: 180px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .fab {
+        display: none;
+    }
+    
+    .myrmain {
+        box-shadow: none;
+        background: white;
+    }
+    
+    .rfi {
+        max-height: 300px;
+    }
+}

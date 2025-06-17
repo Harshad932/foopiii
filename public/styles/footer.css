@@ -1,0 +1,254 @@
+/* Enhanced Footer CSS with Professional Design */
+
+.foo {
+    margin-top: 4rem;
+    background: var(--gradient-dark);
+    padding: 2rem 0;
+    border-top: 4px solid transparent;
+    border-image: var(--gradient-primary) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.foo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-primary);
+    animation: slideInWidth 1.5s ease-out;
+}
+
+.foo footer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    align-items: center !important;
+    border-top: none !important;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.foo .text-body-secondary {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.foo .text-body-secondary:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Social Media Icons Container */
+.foo .nav {
+    gap: 1rem;
+}
+
+.foo .nav li {
+    transition: var(--transition);
+}
+
+.foo .nav li:hover {
+    transform: translateY(-3px);
+}
+
+/* Enhanced Social Media Icons */
+.foo .nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.foo .nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+.foo .nav a:hover::before {
+    opacity: 1;
+}
+
+.foo .nav a:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+    border-color: var(--primary-color);
+}
+
+/* Icon Styling */
+.foo .nav a .bi {
+    width: 22px !important;
+    height: 22px !important;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
+    position: relative;
+    z-index: 2;
+}
+
+.foo .nav a:hover .bi {
+    filter: brightness(0) invert(1);
+    transform: scale(1.1);
+}
+
+/* Twitter/X Icon Specific */
+.foo .nav a[href*="x.com"]:hover,
+.foo .nav a[href*="twitter.com"]:hover {
+    box-shadow: 0 5px 20px rgba(29, 161, 242, 0.4);
+}
+
+.foo .nav a[href*="x.com"]::before,
+.foo .nav a[href*="twitter.com"]::before {
+    background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+}
+
+/* Instagram Icon Specific */
+.foo .nav a[href*="instagram.com"]:hover {
+    box-shadow: 0 5px 20px rgba(225, 48, 108, 0.4);
+}
+
+.foo .nav a[href*="instagram.com"]::before {
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}
+
+/* Copyright Section */
+.foo .col-md-4:first-child {
+    position: relative;
+}
+
+.foo .col-md-4:first-child::before {
+    content: '©';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Responsive Footer Design */
+@media (max-width: 768px) {
+    .foo {
+        margin-top: 2rem;
+        padding: 1.5rem 0;
+    }
+    
+    .foo footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .foo .col-md-4 {
+        flex: none !important;
+        width: 100%;
+    }
+    
+    .foo .nav {
+        justify-content: center !important;
+        margin-top: 1rem;
+    }
+    
+    .foo .col-md-4:first-child::before {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .foo .nav a {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .foo .nav a .bi {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    
+    .foo .text-body-secondary {
+        font-size: 0.85rem;
+    }
+}
+
+/* Footer Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Floating particles effect (optional) */
+.foo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 107, 53, 0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(247, 147, 30, 0.3), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 107, 53, 0.2), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: moveParticles 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes moveParticles {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(200px);
+    }
+}
+
+/* Hover effect for entire footer */
+.foo:hover::before {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}

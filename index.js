@@ -3,7 +3,7 @@ import bp from "body-parser";
 import axios from "axios";
 import {dirname} from "path";
 import {fileURLToPath} from "url";
-import { Console } from "console";
+
 
 
 const port=process.env.PORT || 3000;
@@ -21,6 +21,12 @@ var dc=[];
 app.get("/",(req,res)=>{
 
     res.render(`${dir}/views/index.ejs`);
+
+})
+
+app.get("/contact",(req,res)=>{
+
+    res.render(`${dir}/views/contact.ejs`);
 
 })
 
